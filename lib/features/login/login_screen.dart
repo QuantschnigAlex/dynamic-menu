@@ -131,122 +131,125 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            const Text("Welcome to Dynamic Menu",
-                style: TextStyle(fontSize: 24.0)),
-            const Text("Please login or register to continue",
-                style: TextStyle(fontSize: 16.0)),
-            const SizedBox(height: 32.0),
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              child: Card(
-                color: Theme.of(context).colorScheme.surface,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextField(
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _emailController,
-                        onChanged: (value) {
-                          if (mounted) {
-                            setState(() {
-                              _isError = !_validateEmail(value);
-                            });
-                          }
-                        },
-                        decoration: InputDecoration(
-                          labelText: 'E-Mail',
-                          focusedBorder: _isError
-                              ? const OutlineInputBorder(
-                                  borderSide:
-                                      BorderSide(color: Colors.red, width: 2.0),
-                                )
-                              : OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    width: 2.0,
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
+        child: Center(
+          child: Column(
+            children: [
+              const Text("Welcome to Dynamic Menu",
+                  style: TextStyle(fontSize: 24.0)),
+              const Text("Please login or register to continue",
+                  style: TextStyle(fontSize: 16.0)),
+              const SizedBox(height: 32.0),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 500),
+                child: Card(
+                  margin: const EdgeInsets.all(16),
+                  color: Theme.of(context).colorScheme.surface,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextField(
+                          keyboardType: TextInputType.emailAddress,
+                          controller: _emailController,
+                          onChanged: (value) {
+                            if (mounted) {
+                              setState(() {
+                                _isError = !_validateEmail(value);
+                              });
+                            }
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'E-Mail',
+                            focusedBorder: _isError
+                                ? const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.red, width: 2.0),
+                                  )
+                                : OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      width: 2.0,
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
                                   ),
-                                ),
-                          border: const OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      TextField(
-                        obscureText: true,
-                        controller: _passwordController,
-                        decoration: const InputDecoration(
-                          labelText: 'Password',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      const SizedBox(height: 32.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextButton(
-                            onPressed: _isLoading ? null : _signUp,
-                            child: const Text('Register'),
+                            border: const OutlineInputBorder(),
                           ),
-                          ElevatedButton(
-                            onPressed: _isLoading ? null : _signIn,
-                            child: const SizedBox(
-                              width: 80,
-                              child: Center(
-                                child: Text(
-                                  'Login',
-                                  style: TextStyle(fontSize: 16.0),
+                        ),
+                        const SizedBox(height: 16.0),
+                        TextField(
+                          obscureText: true,
+                          controller: _passwordController,
+                          decoration: const InputDecoration(
+                            labelText: 'Password',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                        const SizedBox(height: 32.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            TextButton(
+                              onPressed: _isLoading ? null : _signUp,
+                              child: const Text('Register'),
+                            ),
+                            ElevatedButton(
+                              onPressed: _isLoading ? null : _signIn,
+                              child: const SizedBox(
+                                width: 80,
+                                child: Center(
+                                  child: Text(
+                                    'Login',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16.0),
-                      const Row(
-                        children: [
-                          Expanded(child: Divider()),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Text(
-                              'OR',
+                          ],
+                        ),
+                        const SizedBox(height: 16.0),
+                        const Row(
+                          children: [
+                            Expanded(child: Divider()),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16.0),
+                              child: Text(
+                                'OR',
+                              ),
                             ),
-                          ),
-                          Expanded(
-                            child: Divider(),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 16.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          IconButton(
+                            Expanded(
+                              child: Divider(),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 16.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            IconButton(
+                                onPressed: () async {},
+                                icon: Image.asset(
+                                  'assets/logos/apple_logo.png',
+                                  height: 50.0,
+                                  width: 50.0,
+                                )),
+                            IconButton(
                               onPressed: () async {},
                               icon: Image.asset(
-                                'assets/logos/apple_logo.png',
-                                height: 50.0,
-                                width: 50.0,
-                              )),
-                          IconButton(
-                            onPressed: () async {},
-                            icon: Image.asset(
-                              width: 50,
-                              height: 50,
-                              'assets/logos/google_logo.png',
+                                width: 50,
+                                height: 50,
+                                'assets/logos/google_logo.png',
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
