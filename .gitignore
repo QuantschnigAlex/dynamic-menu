@@ -42,8 +42,3 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 env.json
-windows
-web
-macos
-linux
-ios
