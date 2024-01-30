@@ -39,6 +39,21 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _signUp() async {
     final theme = Theme.of(context);
 
+    if (_isError) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Wrong email format")));
+
+      return;
+    }
+
+    if (_passwordController.value.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Password must be provided!"),
+        ),
+      );
+      return;
+    }
     try {
       setState(() {
         _isLoading = true;
@@ -101,6 +116,8 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } catch (error) {
+      print(error);
+
       messenger.showSnackBar(SnackBar(
         content: const Text('Unexpected error occurred'),
         backgroundColor: theme.colorScheme.error,
@@ -120,6 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   bool _isError = false;
+  bool _showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -178,11 +196,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 16.0),
                         TextField(
-                          obscureText: true,
+                          obscureText: !_showPassword,
                           controller: _passwordController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             labelText: 'Password',
-                            border: OutlineInputBorder(),
+                            suffixIcon: IconButton(
+                              icon: _showPassword
+                                  ? const Icon(Icons.visibility)
+                                  : const Icon(Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  _showPassword = !_showPassword;
+                                });
+                              },
+                            ),
+                            border: const OutlineInputBorder(),
                           ),
                         ),
                         const SizedBox(height: 32.0),
@@ -242,6 +270,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ],
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text("contiunue without signing"),
                         ),
                       ],
                     ),
