@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:dynamic_menu/main.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final session = data.session;
       if (session != null) {
         _redirecting = true;
-        Navigator.of(context).pushReplacementNamed('/home');
+        context.pushReplacement('/qr');
       }
     });
     super.initState();
