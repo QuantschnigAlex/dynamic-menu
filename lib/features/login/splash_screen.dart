@@ -1,10 +1,12 @@
 import 'package:dynamic_menu/main.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SplashPageState createState() => _SplashPageState();
 }
 
@@ -23,9 +25,9 @@ class _SplashPageState extends State<SplashPage> {
 
     final session = supabase.auth.currentSession;
     if (session != null) {
-      Navigator.of(context).pushReplacementNamed('/home');
+      context.pushReplacement("/qr");
     } else {
-      Navigator.of(context).pushReplacementNamed('/login');
+      context.pushReplacement("/login");
     }
   }
 
