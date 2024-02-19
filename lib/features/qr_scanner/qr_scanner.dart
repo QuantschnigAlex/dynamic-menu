@@ -49,11 +49,18 @@ class _QRScreenState extends State<QRScreen> {
         ],
       ),
       body: MobileScanner(
-        scanWindow:
-            Rect.fromCenter(center: Offset.zero, width: 250, height: 250),
+        overlay: Container(
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 200),
+            decoration: BoxDecoration(
+              shape: BoxShape.rectangle,
+              border: Border.all(
+                color: Colors.red,
+                width: 3,
+              ),
+            )),
         controller: _controller,
         onDetect: (barcodes) {
-          print("Detected barcodes: $barcodes");
+          print("Detected barcodes: ${barcodes.raw}");
         },
       ),
     );
