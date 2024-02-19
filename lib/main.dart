@@ -1,4 +1,3 @@
-import 'package:dynamic_menu/features/home/home_screen.dart';
 import 'package:dynamic_menu/features/login/login_screen.dart';
 import 'package:dynamic_menu/features/login/splash_screen.dart';
 import 'package:dynamic_menu/theme.dart';
@@ -34,7 +33,6 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const SplashPage(),
-        "/home": (context) => const HomeScreen(),
         "/login": (context) => const LoginScreen(),
       },
     );
